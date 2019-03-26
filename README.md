@@ -1,7 +1,7 @@
 Test Service
 ============
 
-This is a simple service I use to test and experiment with, especially new infrastructure.
+This is a simple service I use to test and experiment with, especially on new infrastructure.
 
 For now, it's just a Node HTTP server with a single `GET` endpoint.
 
