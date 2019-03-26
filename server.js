@@ -1,11 +1,14 @@
 const http = require('http')
+const uuid = require('uuid/v4')
 
 const port = 8080
+const deploymentId = uuid()
 
 const responseBody = (req) => {
   return {
     message: "Hello there",
-    requestIp: req.connection.remoteAddress
+    deploymentId: deploymentId,
+    timestamp: Date.now()
   }
 }
 
