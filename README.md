@@ -8,7 +8,15 @@ For now, it's just a Node HTTP server with a single `GET` endpoint.
 Usage
 -----
 
-To run the server locally, it's pretty simple, assuming you have `node` installed:
+The following guide assumes you already have `node` and `npm` installed.
+
+Install all dependencies:
+
+```
+npm install
+```
+
+Spin up the server:
 
 ```
 node server.js
