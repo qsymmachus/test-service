@@ -3,7 +3,10 @@
   "author": "John Olmsted <john@olmsted.io>",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dock-build": "./scripts/build-image.sh",
+    "dock-run": "./scripts/run-container.sh",
+    "dock-stop": "./scripts/stop-container.sh"
   },
   "dependencies": {
     "uuid": "3.3.2"
