@@ -19,7 +19,7 @@ npm install
 Spin up the server:
 
 ```
-node server.js
+npm start
 ```
 
 Docker

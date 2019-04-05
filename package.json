@@ -1,4 +1,10 @@
 {
+  "name": "test-service",
+  "author": "John Olmsted <john@olmsted.io>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "uuid": "3.3.2"
   }
