@@ -29,7 +29,7 @@ Docker
 
 The service can also run as a docker container. Take a look at `Dockerfile` to see how it works.
 
-I've also created some handy scripts to make it easier to run common docker tasks (check out `/scripts`). You must have docker installed locally for these to work.
+I've also created some handy scripts to make it easier to run common docker tasks (check out `scripts`). You must have docker installed locally for these to work.
 
 To build the container:
 
@@ -56,8 +56,34 @@ Kubernetes
 
 If you have a Kubernetes cluster running on your machine, you can also deploy the service on Kubernetes!
 
+We have a couple different deployment profiles you can use, all organized under the `/kubernetes` directory.
+
+### Simple deployment
+
+`kubernetes/simple-deployment.yaml` is our simplest deployment. It just deploys one replica with no wrapping service to expose the server's endpoint.
+
 To deploy, run the following command:
 
 ```
-kubectl apply -f kubernetes/deployment.yaml
+kubectl apply -f kubernetes/simple-deployment.yaml
+```
+
+Since we've specified no service for this deployment, it is only accessible _within_ the cluster. If you'd like to hit the server anyway, you can set up a proxy to the Kubernetes cluster with the following commands.
+
+First, spin up the Kubernetes proxy:
+
+```
+kubectl proxy
+```
+
+Next, get the name of the pod you deployed with this command (you'll need this in the next step):
+
+```
+kubectl get pods
+```
+
+Finally, you can now hit the service at this address, after replacing `POD-NAME` with the name of the pod that was deployed:
+
+```
+http://localhost:8001/api/v1/namespaces/default/pods/POD-NAME/proxy/
 ```
