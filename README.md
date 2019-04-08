@@ -94,7 +94,7 @@ When you're done, you can delete the deployment with this command:
 kubectl delete -f kubernetes/simple-deployment.yaml
 ```
 
-### `NodePort` deployment
+### NodePort deployment
 
 A slightly more advanced deployment is configured in `kubernetes/nodeport-deployment.yaml`.
 
