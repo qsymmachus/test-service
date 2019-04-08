@@ -1,12 +1,12 @@
 Test Service
 ============
 
-This is a simple service I use to test and experiment with, especially on new infrastructure.
+This is a simple service I use to test and experiment with on new infrastructure.
 
-For now, it's just a Node HTTP server with a single `GET` endpoint.
+The service is just a Node HTTP server with a single `GET` endpoint. The fun stuff is found in the configuration and tooling for deploying the service. Read on for details!
 
-Usage
------
+Local Usage
+-----------
 
 The following guide assumes you already have `node` and `npm` installed.
 
