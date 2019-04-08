@@ -68,7 +68,7 @@ To deploy, run the following command:
 kubectl apply -f kubernetes/simple-deployment.yaml
 ```
 
-Since we've specified no service for this deployment, it is only accessible _within_ the cluster. If you'd like to hit the server anyway, you can set up a proxy to the Kubernetes cluster with the following commands.
+Since we've specified no [service](https://kubernetes.io/docs/concepts/services-networking/service/) for this deployment, it is only accessible _within_ the cluster. If you'd like to hit the server anyway, you can set up a proxy to the Kubernetes cluster with the following commands.
 
 First, spin up the Kubernetes proxy:
 
@@ -86,4 +86,30 @@ Finally, you can now hit the service at this address, after replacing `POD-NAME`
 
 ```
 http://localhost:8001/api/v1/namespaces/default/pods/POD-NAME/proxy/
+```
+
+When you're done, you can delete the deployment with this command:
+
+```
+kubectl delete -f kubernetes/simple-deployment.yaml
+```
+
+### `NodePort` deployment
+
+A slightly more advanced deployment is configured in `kubernetes/nodeport-deployment.yaml`.
+
+This includes the simple deployment we defined earlier, but also adds a `Service` that exposes the deployment outside the Kubernetes cluster. We're using a [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport) service, which maps the deployment to a specified port.
+
+To deploy, run the following command:
+
+```
+kubectl apply -f kubernetes/nodeport-deployment.yaml
+```
+
+Once deployed, you can now hit the service at [http://localhost:30080](http://localhost:30080)
+
+To delete this deployment:
+
+```
+kubectl delete -f kubernetes/nodeport-deployment.yaml
 ```
