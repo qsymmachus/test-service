@@ -50,3 +50,14 @@ npm run-script dock-stop
 ```
 
 The docker container maps the server to port `8080`, so you can access it at [http://localhost:8080](http://localhost:8080). I might make this port configurable later.
+
+Kubernetes
+----------
+
+If you have a Kubernetes cluster running on your machine, you can also deploy the service on Kubernetes!
+
+To deploy, run the following command:
+
+```
+kubectl apply -f kubernetes/deployment.yaml
+```

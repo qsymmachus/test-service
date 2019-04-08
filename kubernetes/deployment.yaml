@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-service-deployment
+spec:
+  selector:
+    matchLabels:
+      app: test-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: test-service
+    spec:
+      containers:
+      - name: test-service
+        image: test-service:latest
+        # NOTE: I had to set the policy to 'Never', or else the Kubernetes couldn't find the local image on my machine.
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
