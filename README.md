@@ -5,6 +5,13 @@ This is a simple service I use to test and experiment with on new infrastructure
 
 The service is just a Node HTTP server with a single `GET` endpoint. The fun stuff is found in the configuration and tooling for deploying the service. Read on for details!
 
+Dependencies
+------------
+
+* [Node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/), to run the service as-is with no frills.
+* [Docker](https://www.docker.com/) if you'd like build and run the service as a docker container.
+* [Kubernetes](https://kubernetes.io/) to get fancy and run the service on a kubernetes cluster.
+
 Local Usage
 -----------
 
