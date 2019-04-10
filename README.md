@@ -34,19 +34,19 @@ I've also created some handy scripts to make it easier to run common docker task
 To build the container:
 
 ```
-npm run-script dock-build
+npm run-script docker-build
 ```
 
 To run the container:
 
 ```
-npm run-script dock-run
+npm run-script docker-run
 ```
 
 To stop the container:
 
 ```
-npm run-script dock-stop
+npm run-script docker-stop
 ```
 
 The docker container maps the server to port `8080`, so you can access it at [http://localhost:8080](http://localhost:8080). I might make this port configurable later.
