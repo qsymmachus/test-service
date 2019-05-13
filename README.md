@@ -3,30 +3,30 @@ Test Service
 
 This is a simple service I use to test and experiment with on new infrastructure.
 
-The service is just a Node HTTP server with a single `GET` endpoint. The fun stuff is found in the configuration and tooling for deploying the service. Read on for details!
+The service is just an HTTP server with a single `GET` endpoint. The fun stuff is found in the configuration and tooling for deploying the service. Read on for details!
 
 Dependencies
 ------------
 
-* [Node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/), to run the service as-is with no frills.
+* [Go](https://golang.org/doc/install), to run the service as-is with no frills.
 * [Docker](https://www.docker.com/) if you'd like build and run the service as a docker container.
 * [Kubernetes](https://kubernetes.io/) to get fancy and run the service on a kubernetes cluster.
 
 Local Usage
 -----------
 
-The following guide assumes you already have `node` and `npm` installed.
+The following guide assumes you already have `go` installed.
 
-Install all dependencies:
-
-```
-npm install
-```
-
-Spin up the server locally:
+To compile the server:
 
 ```
-npm start
+go build server
+```
+
+To run the server:
+
+```
+./server
 ```
 
 By default, the server is exposed on [http://localhost:8080](http://localhost:8080)
@@ -36,24 +36,24 @@ Docker
 
 The service can also run as a docker container. Take a look at `Dockerfile` to see how it works.
 
-I've also created some handy scripts to make it easier to run common docker tasks (check out `scripts`). You must have docker installed locally for these to work.
+I've also created some handy scripts to make it easier to run common docker tasks (check out `docker`). You must have docker installed locally for these to work.
 
 To build the container:
 
 ```
-npm run-script docker-build
+./docker/build-image.sh
 ```
 
 To run the container:
 
 ```
-npm run-script docker-run
+./docker/run-container.sh
 ```
 
 To stop the container:
 
 ```
-npm run-script docker-stop
+./docker/stop-container.sh
 ```
 
 The docker container maps the server to port `8080`, so you can access it at [http://localhost:8080](http://localhost:8080). I might make this port configurable later.
