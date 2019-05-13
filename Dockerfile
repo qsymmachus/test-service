@@ -1,15 +1,13 @@
-FROM node:8
+FROM golang:latest
 
 # Create working directory
-WORKDIR /usr/src/app
+RUN mkdir /app
+WORKDIR /app
 
-# Install app dependencies
-COPY package*.json ./
-RUN npm install
-
-# Copy app source code
-COPY server.js .
+# Copy app source code and build
+COPY server.go .
+RUN go build -o server .
 
 # Run the app
 EXPOSE 8080
-CMD ["npm", "start"]
+CMD ["/app/server"]
