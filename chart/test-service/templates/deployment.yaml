@@ -1,0 +1,33 @@
+# Deployment Template
+# -------------------
+# This is pretty much the same as the deployment `kubernetes/nodeport-deployment.yaml`, but we have "helm-ified" it by
+# turning it into a template. Some template values are supplied by `values.yaml`, others by the helpers defined in `_helpers.tpl`.
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ template "test-service.fullname" . }}
+  labels:
+    app: {{ template "test-service.name" . }}
+    chart: {{ template "test-service.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "test-service.name" . }}
+      release: {{ .Release.Name }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "test-service.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        # NOTE: I had to set the policy to 'Never', or else the Kubernetes couldn't find the local image on my machine.
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080

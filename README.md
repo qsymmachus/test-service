@@ -120,3 +120,30 @@ To delete this deployment:
 ```
 kubectl delete -f kubernetes/nodeport-deployment.yaml
 ```
+
+Helm
+----
+
+Now we're getting goofy. Helm is a package manager for Kubernetes, allowing you to you to package descriptions of Kubernetes applications in [charts](https://helm.sh/docs/developing_charts/). You can share, reuse, and extend charts.
+
+We have a chart for the test service under `chart/test-service`. You should [install Helm](https://helm.sh/docs/using_helm/#installing-helm), and read the [Helm docs](https://helm.sh/docs/using_helm/#using-helm) or your [own notes](https://github.com/qsymmachus/notes/blob/master/kubernetes.md#using-helm-and-charts) to learn how to use it in depth, but for now, here's a quick guide.
+
+In install the test service using our chart, run this command:
+
+```
+helm install --name=my-test-service ./chart/test-service
+```
+
+Our chart uses the same service/deployment configuration we have in `kubernetes/nodeport-deployment.yaml`, but we have templated most config values. Take a look at the files in `chart/test-service/templates` to see how this works, and try changing some of the default config values in `chart/test-service/values.yaml`.
+
+You can see useful information about the Helm release with this command:
+
+```
+helm status my-test-service
+```
+
+When you're ready to tear it down:
+
+```
+helm delete --purge my-test-service
+```

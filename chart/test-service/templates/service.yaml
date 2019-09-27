@@ -1,0 +1,23 @@
+# Service Template
+# ----------------
+# This is pretty much the same as the service in `kubernetes/nodeport-deployment.yaml`, but we have "helm-ified" it by
+# turning it into a template. Some template values are supplied by `values.yaml`, others by the helpers defined in `_helpers.tpl`.
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "test-service.fullname" . }}
+  labels:
+    app: {{ template "test-service.name" . }}
+    chart: {{ template "test-service.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: NodePort
+  selector:
+    app: {{ template "test-service.name" . }}
+    release: {{ .Release.Name }}
+  ports:
+    - port: 8080
+      nodePort: {{ .Values.service.nodePort}}
+      name: http
