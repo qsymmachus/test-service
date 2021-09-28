@@ -6,8 +6,10 @@ WORKDIR /app
 
 # Copy app source code and build
 COPY server.go .
+COPY go.mod .
 RUN go build -o server .
 
 # Run the app
 EXPOSE 8080
 CMD ["/app/server"]
+

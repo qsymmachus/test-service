@@ -20,7 +20,7 @@ The following guide assumes you already have `go` installed.
 To compile the server:
 
 ```
-go build server
+go build ./server.go
 ```
 
 To run the server:
