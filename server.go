@@ -2,10 +2,11 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"math/rand"
 	"net/http"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
 // Basic config values.
@@ -35,6 +36,7 @@ func randMessage() string {
 
 // Handler function for our server. Generates a Response, JSON encodes it, and writes it to the response body.
 func handler(w http.ResponseWriter, r *http.Request) {
+	log.Infof("Request received from %s", r.RemoteAddr)
 	response := Response{randMessage(), time.Now().Unix()}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
@@ -43,8 +45,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 // Spin it up!
 func main() {
-	fmt.Printf("Server running on port %s...\n", port)
+	log.Infof("Server running on port %s...", port)
 	http.HandleFunc("/", handler)
 	http.ListenAndServe(port, nil)
 }
-
