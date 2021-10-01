@@ -61,9 +61,19 @@ The docker container maps the server to port `8080`, so you can access it at [ht
 Kubernetes
 ----------
 
-If you have a Kubernetes cluster running on your machine, you can also deploy the service on Kubernetes!
+If you have a Kubernetes cluster running on your machine, you can also deploy the service on Kubernetes.
 
-We have a couple different deployment profiles you can use, all organized under the `/kubernetes` directory.
+We have a couple different manifests you can use, all organized under the `/kubernetes` directory.
+
+### Pod
+
+`kubernetes/pod.yaml` is just a single pod. There is no controller (deployment, statefulset, or daemonset) backing this pod, so once it's gone, it's gone forever.
+
+To deploy, run the following command:
+
+```
+kubectl apply -f kubernetes/pod.yaml
+```
 
 ### Simple deployment
 

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod
+spec:
+  containers:
+  - name: test-service
+    image: test-service:latest
+    # NOTE: I had to set the policy to 'Never', or else the Kubernetes couldn't find the local image on my machine.
+    imagePullPolicy: Never
+    ports:
+    - containerPort: 8080
