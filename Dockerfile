@@ -5,6 +5,9 @@ FROM golang:1.16 as build
 WORKDIR /app
 COPY server.go .
 COPY go.mod .
+COPY go.sum .
+RUN go mod download
+
 RUN go build -o server .
 
 # 2. Second step, copy the compiled binary but leave the source behind:
@@ -25,4 +28,3 @@ RUN groupadd -r app \
 USER app
 EXPOSE 8080
 CMD ["/app/server"]
-
